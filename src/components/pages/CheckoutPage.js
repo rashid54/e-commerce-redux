@@ -1,15 +1,15 @@
-import { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { ShopContex } from "../../contexts/ShoppingContext";
+import { removeAllFromCart } from "../../Redux/Actions/cartActions";
 
 
 function CheckoutPage() {
-    const cartProducts = JSON.parse(localStorage.getItem("cartProducts"));
-    const [setCartProducts] = useContext(ShopContex);
+    const dispatch = useDispatch();
+    const cartProducts = useSelector(state=> state.cart);
     const history = useHistory();
 
     function handleSubmit() {
-        setCartProducts({});
+        dispatch(removeAllFromCart());
         history.push('/success/')
     }
     return (

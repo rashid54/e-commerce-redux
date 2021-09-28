@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react"
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
+import { removeAllFromCart } from "../Redux/Actions/cartActions";
 const axios = require('axios').default
 
 
 export const ShopContex = React.createContext();
-export const ModalContext = React.createContext();
 
 function ShoppingContext({ children }) {
-    const history = useHistory()
+    const dispatch = useDispatch();
+    const history = useHistory();
     const [cartChanges, setCartChanges] = useState(true);
-    const [cartVisible, setCartVisible] = useState(false);
 
     if(!localStorage.getItem("cartProducts")){
         localStorage.setItem("cartProducts", "{}")
@@ -37,7 +38,7 @@ function ShoppingContext({ children }) {
 
                     localStorage.setItem("allProducts", JSON.stringify(allProducts));
                     localStorage.setItem("categories", JSON.stringify(categories)); 
-                    setCartChanges(!cartChanges);
+                    dispatch(removeAllFromCart());
                 })
                 .catch(error=>{
                     history.push("/error/");
@@ -47,9 +48,7 @@ function ShoppingContext({ children }) {
 
     return (
         <ShopContex.Provider value={[setCartProducts]}>
-            <ModalContext.Provider value={{ cartVisible, setCartVisible }} >
-                {children}
-            </ModalContext.Provider>
+            {children}
         </ShopContex.Provider>
     )
 }

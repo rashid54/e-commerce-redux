@@ -1,12 +1,12 @@
-import { useState, useContext } from "react"
-import { ShopContex } from "../../contexts/ShoppingContext"
+import { useState } from "react"
+import { useSelector } from "react-redux";
 import ProductCard from "../productCards/ProductCard";
 
 
 function Products() {
     const allProducts = JSON.parse(localStorage.getItem("allProducts"));
     const categories = JSON.parse(localStorage.getItem("categories"));
-    const [_setCartProducts] = useContext(ShopContex); //eslint-disable-line
+    const _cartProducts = useSelector(state=>state.cart); //eslint-disable-line
     const [selectedCategory, setSelectedCategory] = useState("All Products");
     const [searchText, setSearchText] = useState("");
 

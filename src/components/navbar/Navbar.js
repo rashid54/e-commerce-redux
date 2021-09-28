@@ -1,12 +1,12 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom'
-import { ModalContext, ShopContex } from '../../contexts/ShoppingContext';
+import { openSidebar } from '../../Redux/Actions/modalActions';
 
 
 function Navbar() {
-    const cartProducts = JSON.parse(localStorage.getItem("cartProducts"));
-    const [ _setCartProducts] = useContext(ShopContex); //eslint-disable-line
-    const { setCartVisible } = useContext(ModalContext);
+    const dispatch = useDispatch();
+    const cartProducts = useSelector(state=> state.cart);
     const [isHamMenuOpen, setIsHamMenuOpen] = useState(false);
     const history = useHistory();
 
@@ -35,7 +35,7 @@ function Navbar() {
                     <div className="text-lg inline-block font-semibold my-1 text-night-light-100 bg-night-dark-100 px-2 rounded-md transition transform hover:scale-110 hover:bg-opacity-80"><Link to="/contacts/">Contacts</Link></div>
                 </div>
             </div>
-            <button onClick={() => setCartVisible(true)} className="transition transform hover:scale-110 hover:bg-opacity-80 text-3xl mx-2 my-1 bg-night-dark-100 text-night-light-100 px-2 relative rounded-lg justify-self-end" >
+            <button onClick={() =>dispatch(openSidebar()) } className="transition transform hover:scale-110 hover:bg-opacity-80 text-3xl mx-2 my-1 bg-night-dark-100 text-night-light-100 px-2 relative rounded-lg justify-self-end" >
                 <i className="fa fa-shopping-cart"></i>
                 {
                     Object.keys(cartProducts).length ? (
