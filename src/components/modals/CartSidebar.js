@@ -29,7 +29,7 @@ function CartSidebar() {
                     }
                 </div>
                 <div className="flex flex-col space-y-1 py-2">
-                    <button className="transition transform hover:scale-102 hover:bg-opacity-80 font-semibold text-lg sm:text-lg bg-neon1-light-100 mx-2 rounded-lg py-3" onClick={() => { dispatch(closeSidebar()); history.push('/checkout/') }}>Proceed To Checkout</button>
+                    <button disabled={!Object.keys(cartProducts).length} className={`transition transform hover:scale-102 font-semibold text-lg sm:text-lg bg-neon1-light-100 mx-2 rounded-lg py-3 ${Object.keys(cartProducts).length?"hover:bg-opacity-80":"cursor-not-allowed bg-opacity-30 hover:bg-opacity-20"}`} onClick={() => { dispatch(closeSidebar()); history.push('/checkout/') }}>Proceed To Checkout</button>
                     <div className="flex py-1 px-4 rounded-md mx-2">
                         <h4 className="font-semibold text-base sm:text-lg">Total Cost: </h4>
                         <h6 className="flex-grow text-right w-1/2 text-base sm:text-lg font-bold"><i className="fa fa-dollar text-base pl-2"></i> {Object.values(cartProducts).reduce((totalCost, product) => totalCost + (product.count * product.price), 0).toFixed(2)}</h6>
