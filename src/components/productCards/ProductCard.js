@@ -22,10 +22,10 @@ function ProductCard({ product: { id, image, title, category, price, rating} }) 
             <div className="w-full text-center">
                 {
                     cartProducts[id] ? (
-                        <div className="space-x-3 flex flex-wrap justify-around px-8 items-center">
-                            <button onClick={() => dispatch(setCartCount(id,cartProducts[id].count-1))} className="bg-red-400 transition transform hover:scale-110 px-3 py-1 rounded-full" ><i className="fa fa-minus font-bold text-xl"></i></button>
+                        <div className="space-x-1 sm:space-x-3 flex flex-wrap justify-around px-8 items-center">
+                            <button onClick={() => dispatch(setCartCount(id,cartProducts[id].count-1))} className="bg-red-400 transition transform hover:scale-110 px-2 py-0 sm:px-3 sm:py-1 rounded-full" ><i className="fa fa-minus font-bold text-lg sm:text-xl"></i></button>
                             <h3 className="bg-blue-100 px-3 py-0 rounded-lg font-bold text-2xl" >{cartProducts[id].count}</h3>
-                            <button onClick={() => dispatch(setCartCount(id,cartProducts[id].count+1))} className="bg-green-500 transition transform hover:scale-110 px-3 py-1 rounded-full" ><i className="fa fa-plus font-bold text-xl"></i></button>
+                            <button onClick={() => dispatch(setCartCount(id,cartProducts[id].count+1))} className="bg-green-500 transition transform hover:scale-110 px-2 py-0 sm:px-3 sm:py-1 rounded-full" ><i className="fa fa-plus font-bold text-lg sm:text-xl"></i></button>
                         </div>
                     ) : (
                         <button onClick={() => dispatch(addToCart({id,image,title,price,rating,count:1}))} className="p-2 bg-red-500 transition transform hover:scale-105 w-full rounded-lg font-semibold"><i className="fa fa-cart-plus"></i> Add To Cart</button>

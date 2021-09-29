@@ -4,7 +4,8 @@ import { useHistory } from "react-router-dom";
 
 function PurchaseSuccess() {
     const history = useHistory();
-    if(!history.location.state){
+    console.log(history.location);
+    if(!history.location.fromCheckout){
         history.push('/');
     }
     return (
