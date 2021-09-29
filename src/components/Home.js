@@ -18,43 +18,31 @@ function Home() {
         <Provider store={store} >
             <PersistGate loading={null} persistor={persistor}>
                 <Router>
-                    <Switch>
-                        <Route exact path="/" >
-                            <PageTemplate>
+                    <PageTemplate>
+                        <Switch>
+                            <Route exact path="/" >
                                 <Products />
-                            </PageTemplate>
-                        </Route>
-                        <Route exact path="/checkout/" >
-                            <PageTemplate>
+                            </Route>
+                            <Route exact path="/checkout/" >
                                 <CheckoutPage />
-                            </PageTemplate>
-                        </Route>
-                        <Route path="/success/" >
-                            <PageTemplate>
+                            </Route>
+                            <Route path="/success/" >
                                 <PurchaseSuccess />
-                            </PageTemplate>
-                        </Route>
-                        <Route path="/about/" >
-                            <PageTemplate>
+                            </Route>
+                            <Route path="/about/" >
                                 <AboutUs />
-                            </PageTemplate>
-                        </Route>
-                        <Route path="/contacts/" >
-                            <PageTemplate>
+                            </Route>
+                            <Route path="/contacts/" >
                                 <Contacts />
-                            </PageTemplate>
-                        </Route>
-                        <Route path="/error/" >
-                            <PageTemplate>
+                            </Route>
+                            <Route path="/error/" >
                                 <ErrorPage />
-                            </PageTemplate>
-                        </Route>
-                        <Route path="*" >
-                            <PageTemplate>    
+                            </Route>
+                            <Route path="*" >
                                 <NotFoundPage />
-                            </PageTemplate>
-                        </Route>
-                    </Switch>
+                            </Route>
+                        </Switch>
+                    </PageTemplate>
                 </Router>
             </PersistGate>
         </Provider>
