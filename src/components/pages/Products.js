@@ -1,14 +1,14 @@
-import { useState } from "react"
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchText, setSelectedCategory } from "../../Redux/Actions/productsActions";
 import ProductCard from "../productCards/ProductCard";
 
 
 function Products() {
+    const dispatch = useDispatch();
     const allProducts = JSON.parse(localStorage.getItem("allProducts"));
     const categories = JSON.parse(localStorage.getItem("categories"));
-    const _cartProducts = useSelector(state=>state.cart); //eslint-disable-line
-    const [selectedCategory, setSelectedCategory] = useState("All Products");
-    const [searchText, setSearchText] = useState("");
+    const selectedCategory = useSelector(state=>state.products.category);
+    const searchText = useSelector(state=>state.products.search);
 
     return (allProducts) ? (
         <div className="min-h-screen pt-24 bg-gray-100 px-12 sm:px-28 md:px-8 lg:px-16 xl:px-32">
@@ -16,7 +16,7 @@ function Products() {
                 <div className="inline-block relative 2xl:w-2/5 xl:w-2/5 md:w-2/5 w-full transition transform hover:scale-105 px-2">
                     <select
                         className="block capitalize appearance-none w-full bg-gray-300 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 transition transform hover:bg-gray-200"
-                        onChange={(e) => setSelectedCategory(e.target.value)}
+                        onChange={(e) => dispatch(setSelectedCategory(e.target.value))}
                         value={selectedCategory}
                     >
                         <option value="All Products">All Products</option>
@@ -29,7 +29,7 @@ function Products() {
                     </div>
                 </div>
                 <div className="inline-block relative 2xl:w-2/5 xl:w-2/5 md:w-2/5 w-full px-2 transition transform hover:scale-105">
-                    <input className="bg-gray-300 py-3 px-10 w-full border border-gray-300 placeholder-gray-600 text-gray-900 rounded leading-tight focus:outline-none focus:bg-gray-50 focus:border-gray-500 transition transform hover:bg-gray-200" type="text" placeholder="Search" value={searchText} onChange={(e) => setSearchText(e.target.value)} />
+                    <input className="bg-gray-300 py-3 px-10 w-full border border-gray-300 placeholder-gray-600 text-gray-900 rounded leading-tight focus:outline-none focus:bg-gray-50 focus:border-gray-500 transition transform hover:bg-gray-200" type="text" placeholder="Search" value={searchText} onChange={(e) => dispatch(setSearchText(e.target.value))} />
                     <div className="pointer-events-none absolute inset-y-0 left-2 flex items-center px-2 text-gray-700">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -37,7 +37,7 @@ function Products() {
                     </div>
                     {
                         searchText ? (
-                            <div onClick={() => setSearchText("")} className="absolute inset-y-0 right-2 flex items-center px-2 rounded-r hover:bg-gray-300 text-gray-700">
+                            <div onClick={() => dispatch(setSearchText(""))} className="absolute inset-y-0 right-2 flex items-center px-2 rounded-r hover:bg-gray-300 text-gray-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                 </svg>
