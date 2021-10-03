@@ -1,11 +1,13 @@
 import { SET_SEARCH_TEXT, SET_SELECTED_CATEGORY } from "../ActionTypes/productsActionTypes";
 
-const initialState = {
-    category : "All Products",
-    search : "",
+const initialState = ()=> {
+    return {
+        category : localStorage.getItem("categories")?"All Products":"----",
+        search : "",
+    }
 }
 
-export function productsReducer(state=initialState,action){
+export function productsReducer(state=initialState(),action){
     switch (action.type){
         case SET_SELECTED_CATEGORY:
             return {

@@ -12,8 +12,7 @@ export async function fetchProducts(dispatch){
                 }, []);
 
                 localStorage.setItem("allProducts", JSON.stringify(allProducts));
-                localStorage.setItem("categories", JSON.stringify(categories)); 
-                dispatch(setSelectedCategory(""));
+                localStorage.setItem("categories", JSON.stringify(categories));
                 dispatch(setSelectedCategory("All Products"));
             })
             .catch(error=>{
