@@ -38,9 +38,8 @@ function Navbar() {
             <button onClick={() =>dispatch(openSidebar()) } className="transition transform hover:scale-110 hover:bg-opacity-80 text-3xl mx-2 my-1 bg-night-dark-100 text-night-light-100 px-2 relative rounded-lg justify-self-end" >
                 <i className="fa fa-shopping-cart"></i>
                 {
-                    Object.keys(cartProducts).length ? (
+                    Object.keys(cartProducts).length !== 0 &&
                         <p className="absolute -right-3 -top-3 text-base rounded-full px-2 bg-indigo-500 text-neon1-light-300 font-semibold">{Object.values(cartProducts).reduce((totalSelected, product) => totalSelected + product.count, 0)}</p>
-                    ) : ""
                 }
             </button>
         </div>

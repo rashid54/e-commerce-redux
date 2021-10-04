@@ -20,27 +20,13 @@ function Home() {
                 <Router>
                     <PageTemplate>
                         <Switch>
-                            <Route exact path="/" >
-                                <Products />
-                            </Route>
-                            <Route exact path="/checkout/" >
-                                <CheckoutPage />
-                            </Route>
-                            <Route path="/success/" >
-                                <PurchaseSuccess />
-                            </Route>
-                            <Route path="/about/" >
-                                <AboutUs />
-                            </Route>
-                            <Route path="/contacts/" >
-                                <Contacts />
-                            </Route>
-                            <Route path="/error/" >
-                                <ErrorPage />
-                            </Route>
-                            <Route path="*" >
-                                <NotFoundPage />
-                            </Route>
+                            <Route exact path="/" component={Products} />
+                            <Route exact path="/checkout/" component={CheckoutPage} />
+                            <Route exact path="/success/" component={PurchaseSuccess} />
+                            <Route exact path="/about/" component={AboutUs} />
+                            <Route exact path="/contacts/" component={Contacts} />
+                            <Route exact path="/error/" component={ErrorPage} />
+                            <Route path="*" component={NotFoundPage} />
                         </Switch>
                     </PageTemplate>
                 </Router>

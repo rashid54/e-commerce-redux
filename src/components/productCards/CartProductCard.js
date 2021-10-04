@@ -2,9 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, setCartCount } from "../../Redux/Actions/cartActions";
 
 
-function CartProductCard({id}) {
+function CartProductCard({ id }) {
     const dispatch = useDispatch();
-    const {title,image,price,rating:{rate},count} = useSelector(state=> state.cart[id]);
+    const { title, image, price, rating: { rate }, count } = useSelector(state => state.cart[id]);
 
     return (
         <div className="bg-gray-300 hover:bg-neon1-light-1000 transform transition hover:scale-102 mx-2 my-3 px-3 py-1 flex flex-wrap flex-row rounded-md">
@@ -19,11 +19,11 @@ function CartProductCard({id}) {
                 </div>
             </div>
             <div className="flex w-full py-1">
-                <button className="bg-red-400 transition transform hover:scale-105 w-1/4 py-0 px-2 font-semibold rounded-md" onClick={() =>dispatch(removeFromCart(id))} >Remove</button>
+                <button className="bg-red-400 transition transform hover:scale-105 w-1/4 py-0 px-2 font-semibold rounded-md" onClick={() => dispatch(removeFromCart(id))} >Remove</button>
                 <div className="flex space-x-3 justify-around flex-grow px-8 space-x-4">
                     <h3 className="flex-grow bg-gray-100 px-3 py-0 text-center rounded font-bold text-lg" >{count}</h3>
-                    <button onClick={() => dispatch(setCartCount(id,count-1))} className="bg-red-400 transition transform hover:scale-110 px-2 py-0 rounded-full" ><i className="fa fa-minus font-bold text-xl"></i></button>
-                    <button onClick={() => dispatch(setCartCount(id,count+1))} className="bg-green-500 transition transform hover:scale-110 px-2 py-0 rounded-full" ><i className="fa fa-plus font-bold text-xl"></i></button>
+                    <button onClick={() => dispatch(setCartCount(id, count - 1))} className="bg-red-400 transition transform hover:scale-110 px-2 py-0 rounded-full" ><i className="fa fa-minus font-bold text-xl"></i></button>
+                    <button onClick={() => dispatch(setCartCount(id, count + 1))} className="bg-green-500 transition transform hover:scale-110 px-2 py-0 rounded-full" ><i className="fa fa-plus font-bold text-xl"></i></button>
 
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchText, setSelectedCategory } from "../../Redux/Actions/productsActions";
 import ProductCard from "../productCards/ProductCard";
+import Loading from "./Loading";
 
 
 function Products() {
@@ -36,38 +37,27 @@ function Products() {
                         </svg>
                     </div>
                     {
-                        searchText ? (
+                        searchText !== "" && 
                             <div onClick={() => dispatch(setSearchText(""))} className="absolute inset-y-0 right-2 flex items-center px-2 rounded-r hover:bg-gray-300 text-gray-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                 </svg>
-                            </div>) : ""
+                            </div>
                     }
                 </div>
             </div>
             <div className="flex flex-wrap justify-start items-stretch">
                 {
-                    allProducts.filter(product => ((product.category === selectedCategory) || (selectedCategory === "All Products")))
+                    allProducts
+                        .filter(product => ((product.category === selectedCategory) || (selectedCategory === "All Products")))
                         .filter(product => product.title.toLowerCase().includes(searchText.toLowerCase()))
                         .map((product) => {
-                            return (
-                                <div key={product.id} className="2xl:w-1/4 xl:w-1/3 md:w-1/2 w-full py-2 px-4 lg:px-10 xl:py-4 xl:px-6 ">
-                                    <ProductCard product={product} />
-                                </div>
-                            )
+                            return <ProductCard key={product.id} product={product} />
                         })
                 }
             </div>
         </div>
-    ) : (
-        <div className='h-auto flex bg-gradient-to-r from-blue-100 to-green-100'>
-            <div className='m-auto my-52 '>
-                <div className='flex items-center justify-center '>
-                    <div className='w-40 h-40 border-t-8 border-b-8 border-blue-500 rounded-full animate-spin'></div>
-                </div>
-            </div>
-        </div>
-    )
+    ) : <Loading />
 }
 
 export default Products;

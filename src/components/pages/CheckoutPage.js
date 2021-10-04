@@ -1,17 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { removeAllFromCart } from "../../Redux/Actions/cartActions";
+import CheckoutError from "./CheckoutError";
 
 
 function CheckoutPage() {
     const dispatch = useDispatch();
-    const cartProducts = useSelector(state=> state.cart);
+    const cartProducts = useSelector(state => state.cart);
     const history = useHistory();
 
     function handleSubmit() {
         dispatch(removeAllFromCart());
-        history.push({pathname: "/success/", fromCheckout: true});
+        history.push({ pathname: "/success/", fromCheckout: true });
     }
+    
     return (
         <div className="pt-24 bg-gradient-to-br from-neon1-light-1000 to-neon1-light-500 w-full h-screen">
             {
@@ -34,13 +36,7 @@ function CheckoutPage() {
                             <button className="bg-red-300 p-3 rounded-lg transform transition hover:bg-red-200 hover:scale-105 font-semibold text-lg" onClick={() => history.push('/')}>Cancel</button>
                         </form>
                     </div>
-                ) : (
-                    <div className="flex flex-col w-5/6 md:w-1/2 mx-auto space-y-4 bg-neon1-light-600 rounded-md my-20 p-8">
-                        <h4 className="text-blue-500 font-bold text-2xl text-center">No Product in Cart</h4>
-                        <p className="font-medium text-lg font-serif">No product is added to cart. Please add the products you want to but to cart and visit this page again.</p>
-                        <button onClick={() => history.push('/')} className="bg-blue-500 text-blue-200 p-2 rounded-lg font-semibold text-xl">View Products</button>
-                    </div>
-                )
+                ) : <CheckoutError />
             }
         </div>
     )

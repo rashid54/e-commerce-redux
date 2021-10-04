@@ -9,6 +9,7 @@ import Navbar from "./navbar/Navbar";
 function PageTemplate({children}){
     const dispatch = useDispatch();
     dispatch(fetchProducts);
+    
     return (
         <div className="">
             <Navbar />

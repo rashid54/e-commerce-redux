@@ -16,7 +16,7 @@ export async function fetchProducts(dispatch){
                 dispatch(setSelectedCategory("All Products"));
             })
             .catch(error=>{
-                // history.push("/error/");
+                
             })
     }
 }
